@@ -18,13 +18,14 @@
             font-family: "Inter", sans-serif;
         }
     </style>
+    <link rel="stylesheet" href="./style.css">
 
     <!-- Font Awesome -->
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="bg-green-50">
 
-    <main class="container mx-auto  pt-25">
+    <main class="container mx-auto  pt-10">
         <h2 class="text-[#15803D] font-bold text-3xl text-center mb-10">Choose Your Trees</h2>
         
         <div class="grid grid-cols-5 gap-10">
@@ -32,7 +33,7 @@
             <!-- Categories -->
             <div class="space-y-2 sticky top-6 max-h-screen overflow-y-auto">
                 <h2 class="font-bold text-2xl mb-4">Categories</h2>
-                <button onclick="loadAllTrees()" id="all-tree-btn" class="btn btn-success w-full justify-start">All Trees</button>
+                <button id="all-tree-btn" class="btn btn-success text-white w-full justify-start border-none">All Trees</button>
                 
                 <!-- Categories Container -->
                 <div id="categories-container" class="space-y-2">
@@ -86,9 +87,6 @@
 
 
                 <div id="tree-container" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-
-                
-                    
                     <!-- <div class="card bg-white rounded-lg shadow-md p-4 space-y-2">
                         <div class="image w-full bg-gray-200 rounded-md">
                             <img src="" alt="">
