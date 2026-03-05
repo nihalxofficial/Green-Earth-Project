@@ -2,6 +2,8 @@ const categoriesContainer = document.getElementById('categories-container')
 const allTreeBtn = document.getElementById("all-tree-btn");
 const treeContainer = document.getElementById("tree-container");
 const loadingSpinner = document.getElementById("loading-spinner");
+const treeModal = document.getElementById("tree_modal");
+const detailsContainer = document.getElementById('details_container');
 
 
 
@@ -67,10 +69,8 @@ const loadAllTrees = async () => {
     displayTrees(data.plants);
 }
 
-allTreeBtn.addEventListener("click", loadAllTrees);
-
 const selectCategory = async (id) => {
-    showLoading(true)
+    showLoading(true);
     const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`)
     const data = await res.json();
     displayTrees(data.plants);
@@ -84,7 +84,7 @@ const displayTrees = (plants) => {
         card.className = "card bg-white rounded-xl shadow-md p-3 space-y-2";
         card.innerHTML = `
         <div class="image ">
-            <img src="${plant.image}" alt="${plant.name}" class="w-full h-[200px] rounded-xl object-cover">
+            <img onclick="openTreeModal(${plant.id})" src="${plant.image}" alt="${plant.name}" class="w-full h-[200px] rounded-xl object-cover cursor-pointer">
             </div>
             <h2 class="font-semibold">${plant.name}</h2>
             <p class="text-sm text-gray-600 line-clamp-2">${plant.description}</p>
@@ -99,6 +99,25 @@ const displayTrees = (plants) => {
     showLoading(false);
     })
 }
+
+const openTreeModal = async (id) => {    
+    
+    const res = await fetch(`https://openapi.programming-hero.com/api/plant/${id}`);
+    const data = await res.json();
+    const treeDetails = data.plants;
+    detailsContainer.innerHTML = `
+     <div class="card  p-4 space-y-2">
+        <h2 id="modalName" class="font-bold text-2xl text-green-800">${treeDetails.name}</h2>
+        <div class="image ">
+            <img id="modalImage" src="${treeDetails.image}" alt="${treeDetails.name}" class="w-full h-[250px] rounded-xl object-cover">
+        </div>
+        <h2 class="font-bold mt-2">Category: <span id="modalCategory" class="bg-green-500 text-white px-2 py-1 rounded-lg">${treeDetails.category}</span></h2>
+        <p id="modalDescription" class="text-sm text-gray-600">${treeDetails.description}</p>
+        <h2 class="font-bold text-2xl text-green-800">৳ <span  id="modalPrice">${treeDetails.price}</span></h2>
+    </div>
+    `;
+    treeModal.showModal();
+} 
 
 loadCategories();
 loadAllTrees();
