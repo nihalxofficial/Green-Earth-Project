@@ -24,38 +24,83 @@
 </head>
 <body class="bg-green-50">
 
-    <main class="container mx-auto w-11/12 pt-25">
+    <main class="container mx-auto  pt-25">
         <h2 class="text-[#15803D] font-bold text-3xl text-center mb-10">Choose Your Trees</h2>
         
-        <div class="grid grid-cols-4 gap-10">
+        <div class="grid grid-cols-5 gap-10">
 
             <!-- Categories -->
-            <div class="space-y-2">
+            <div class="space-y-2 sticky top-6 max-h-screen overflow-y-auto">
                 <h2 class="font-bold text-2xl mb-4">Categories</h2>
-                <button id="all-tree-btn" class="btn btn-success w-full justify-start">All Trees</button>
+                <button onclick="loadAllTrees()" id="all-tree-btn" class="btn btn-success w-full justify-start">All Trees</button>
                 
                 <!-- Categories Container -->
                 <div id="categories-container" class="space-y-2">
-                    <button class="btn justify-start bg-transparent w-full border-none">Medicine Tree</button>
+                    <!-- <button class="btn justify-start bg-transparent w-full border-none">Medicine Tree</button> -->
                 </div>
             </div>
             
             <!-- Trees -->
-            <div class="col-span-2">
-                <div id="tree-container" class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            <div class="col-span-3">
+
+
+                    <!-- Spinner -->
+                 <div id="loading-spinner" class="grid grid-cols-1 sm:grid-cols-3 gap-6 hidden ">
+                    <div class="flex w-52 flex-col gap-4">
+                        <div class="skeleton h-32 w-full"></div>
+                        <div class="skeleton h-4 w-28"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                    </div>
+                    <div class="flex w-52 flex-col gap-4">
+                        <div class="skeleton h-32 w-full"></div>
+                        <div class="skeleton h-4 w-28"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                    </div>
+                    <div class="flex w-52 flex-col gap-4">
+                        <div class="skeleton h-32 w-full"></div>
+                        <div class="skeleton h-4 w-28"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                    </div>
+                    <div class="flex w-52 flex-col gap-4">
+                        <div class="skeleton h-32 w-full"></div>
+                        <div class="skeleton h-4 w-28"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                    </div>
+                    <div class="flex w-52 flex-col gap-4">
+                        <div class="skeleton h-32 w-full"></div>
+                        <div class="skeleton h-4 w-28"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                    </div>
+                    <div class="flex w-52 flex-col gap-4">
+                        <div class="skeleton h-32 w-full"></div>
+                        <div class="skeleton h-4 w-28"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                        <div class="skeleton h-4 w-full"></div>
+                    </div>
+                 </div>
+
+
+                <div id="tree-container" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+
+                
                     
-                    <div class="card bg-white rounded-lg shadow-md p-4 space-y-2">
-                        <div class="image w-full h-[150px] bg-gray-200 rounded-md">
+                    <!-- <div class="card bg-white rounded-lg shadow-md p-4 space-y-2">
+                        <div class="image w-full bg-gray-200 rounded-md">
                             <img src="" alt="">
                         </div>
                         <h2 class="font-semibold">Mango Tree</h2>
-                        <p class="text-sm text-gray-600">A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green</p>
+                        <p class="text-sm text-gray-600 line-clamp-2">A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green</p>
                         <div class="flex justify-between">
                             <button class="bg-green-300 text-green rounded-full px-3">Fruit Tree</button>
                             <button class="font-semibold">৳500</button>
                         </div>
-                        <button class="btn bg-green-700 text-white py-2 rounded-full">Add to Cart</button>
-                    </div>
+                        <button class="btn bg-green-700 text-white py-2 rounded-full"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                    </div> -->
 
                 </div>
             </div>
