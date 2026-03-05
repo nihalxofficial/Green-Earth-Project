@@ -104,12 +104,31 @@
             </div>
             
             <!-- Cart -->
-            <div>Cart</div>
+            <div class="bg-white rounded-lg p-2">
+                <h2 class="text-2xl font-bold mb-2"><i class="fa-solid fa-basket-shopping"></i> Cart</h2>
+                <div class="space-y-4">
+                    <div class="card card-body bg-green-50">
+                        <div class="flex justify-between items-center">
+                            <div>
+                                <h2>Plant name</h2>
+                                <p>৳ 2000 x 10</p>
+                            </div>
+                            <button class="btn btn-ghost">X</button>
+                        </div>
+                        <p class="text-right font-semibold text-md text-green-800">৳ 500</p>
+                    </div>
+                    
+                    <!-- Total Amount -->
+                    <div class="flex justify-between items-center bg-green-50 rounded-lg p-4 my-3 font-bold">
+                        <span>Total:</span>
+                        <span id="total-price">৳ 0</span>
+                    </div>
+                </div>
+            </div>
         </div>
 
 
         <!-- Product Details -->
-         <!-- Open the modal using ID.showModal() method -->
         <!-- <button class="btn" onclick="tree_modal.showModal()">open modal</button> -->
         <dialog id="tree_modal" class="modal modal-bottom sm:modal-middle ">
         <div class="modal-box">
