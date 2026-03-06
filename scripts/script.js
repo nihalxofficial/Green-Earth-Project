@@ -4,6 +4,10 @@ const treeContainer = document.getElementById("tree-container");
 const loadingSpinner = document.getElementById("loading-spinner");
 const treeModal = document.getElementById("tree_modal");
 const detailsContainer = document.getElementById('details_container');
+const cartContainer = document.getElementById('cart-container');
+const totalCartPrice = document.getElementById("total-cart-price");
+const emptyElement = document.getElementById("empty-cart-message");
+let cart = [];
 
 
 
@@ -92,7 +96,7 @@ const displayTrees = (plants) => {
                 <button class="bg-green-300 text-green rounded-full px-3 py-1 text-sm">${plant.category}</button>
                 <button class="font-semibold">৳${plant.price}</button>
             </div>
-        <button class="btn bg-green-700 text-white py-2 rounded-full"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+        <button onclick="addToCart(${plant.id}, '${plant.name}', ${plant.price})" class="btn bg-green-700 text-white py-2 rounded-full"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
         `;
 
     treeContainer.appendChild(card);
@@ -117,7 +121,65 @@ const openTreeModal = async (id) => {
     </div>
     `;
     treeModal.showModal();
-} 
+}
+
+const addToCart = (id, name, price) => {
+
+    const product = {
+        id,
+        name,
+        price,
+        quantity : 1,
+    }
+    const existingProduct = cart.find(item => item.id === product.id);
+
+    if(existingProduct){
+        existingProduct.quantity++;
+    }else{
+        cart.push(product);
+    }  
+    updateCart();
+}
+
+const updateCart = () => {
+    cartContainer.innerHTML= "";
+
+    if(cart.length === 0 ){
+        emptyElement.classList.remove("hidden");
+        totalCartPrice.innerText = 0;
+        return
+    }else{
+
+    
+    emptyElement.classList.add("hidden");
+    let totalPrice = 0;
+    // cartContainer.innerHTML = "";
+    cart.forEach(item => {
+        const itemPrice = item.price * item.quantity;
+        totalPrice += itemPrice;        
+        const cartItem = document.createElement("div");
+        cartItem.className = "card card-body bg-green-50 font-semibold";
+        cartItem.innerHTML = `
+            <div class="flex justify-between items-center">
+                <div>
+                    <h2>${item.name}</h2>
+                    <p>৳ ${item.price} x ${item.quantity}</p>
+                </div>
+                <button onclick="removeCart(${item.id})" class="btn btn-ghost">X</button>
+            </div>
+            <p class="item-prices text-right font-semibold text-md text-green-800">৳ ${itemPrice}</p>
+        `;
+        cartContainer.appendChild(cartItem);
+        totalCartPrice.innerText = totalPrice;
+    })}
+}
+
+const removeCart = (treeId) => {
+    const updateCartElements = cart.filter(item => item.id !== treeId);
+    cart = updateCartElements;
+    updateCart();
+    
+}
 
 loadCategories();
 loadAllTrees();

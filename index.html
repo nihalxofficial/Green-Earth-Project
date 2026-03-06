@@ -104,25 +104,37 @@
             </div>
             
             <!-- Cart -->
-            <div class="bg-white rounded-lg p-2">
-                <h2 class="text-2xl font-bold mb-2"><i class="fa-solid fa-basket-shopping"></i> Cart</h2>
+            <div class=" ">
+                <div class="bg-white rounded-lg p-2">
+                    <h2 class="text-2xl font-bold mb-2"><i class="fa-solid fa-basket-shopping"></i> Cart</h2>
                 <div class="space-y-4">
-                    <div class="card card-body bg-green-50">
-                        <div class="flex justify-between items-center">
-                            <div>
-                                <h2>Plant name</h2>
-                                <p>৳ 2000 x 10</p>
+                    
+                    <div id="empty-cart-message" class="text-center py-6 text-sm">
+                        <p>Your cart is empty</p>
+                        <p>Add trees to get started</p>
+                    </div>
+                    <div id="cart-container" class="space-y-4">
+                        <!-- <div class="card card-body bg-green-50">
+                            
+    
+                            <div class="flex justify-between items-center">
+                                <div>
+                                    <h2>Plant name</h2>
+                                    <p>৳ 2000 x 10</p>
+                                </div>
+                                <button class="btn btn-ghost">X</button>
                             </div>
-                            <button class="btn btn-ghost">X</button>
-                        </div>
-                        <p class="text-right font-semibold text-md text-green-800">৳ 500</p>
+                            <p class="text-right font-semibold text-md text-green-800">৳ 500</p>
+                        </div> -->
+                    
                     </div>
                     
                     <!-- Total Amount -->
                     <div class="flex justify-between items-center bg-green-50 rounded-lg p-4 my-3 font-bold">
                         <span>Total:</span>
-                        <span id="total-price">৳ 0</span>
+                        <p>৳ <span id="total-cart-price">0</span></p>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
@@ -131,7 +143,7 @@
         <!-- Product Details -->
         <!-- <button class="btn" onclick="tree_modal.showModal()">open modal</button> -->
         <dialog id="tree_modal" class="modal modal-bottom sm:modal-middle ">
-        <div class="modal-box">
+            <div class="modal-box">
             <div id="details_container">
 
                 
@@ -149,7 +161,7 @@
             <div class="modal-action">
             <form method="dialog">
                 <!-- if there is a button in form, it will close the modal -->
-                <button class="btn bg-green-700 text-white py-2 rounded-md"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
+                <button  class="btn bg-green-700 text-white py-2 rounded-md"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
                 <button class="btn btn-primary py-2 rounded-md"><i class="fa-solid fa-xmark"></i>Close</button>
             </form>
             </div>
