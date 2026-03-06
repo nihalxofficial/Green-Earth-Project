@@ -110,16 +110,40 @@ const openTreeModal = async (id) => {
     const data = await res.json();
     const treeDetails = data.plants;
     detailsContainer.innerHTML = `
-     <div class="card  p-4 space-y-2">
-        <h2 id="modalName" class="font-bold text-2xl text-green-800">${treeDetails.name}</h2>
-        <div class="image ">
-            <img id="modalImage" src="${treeDetails.image}" alt="${treeDetails.name}" class="w-full h-[250px] rounded-xl object-cover">
+        <div class="modal-box">
+
+            <div class="card p-4 space-y-3">
+                <h2 class="font-bold text-2xl text-green-800">${treeDetails.name}</h2>
+
+                <img src="${treeDetails.image}" 
+                class="w-full h-[250px] rounded-xl object-cover">
+
+                <h2 class="font-bold">
+                    Category:
+                    <span class="bg-green-500 text-white px-2 py-1 rounded-lg">
+                        ${treeDetails.category}
+                    </span>
+                </h2>
+
+                <p class="text-sm text-gray-600">${treeDetails.description}</p>
+
+                <h2 class="font-bold text-2xl text-green-800">
+                    ৳ ${treeDetails.price}
+                </h2>
+            </div>
+
+            <div class="modal-action">
+                <button onclick="addToCart(${treeDetails.id}, '${treeDetails.name}', ${treeDetails.price})"
+                class="btn bg-green-700 text-white">
+                <i class="fa-solid fa-cart-shopping"></i> Add to Cart
+                </button>
+
+                <form method="dialog">
+                    <button class="btn">Close</button>
+                </form>
+            </div>
         </div>
-        <h2 class="font-bold mt-2">Category: <span id="modalCategory" class="bg-green-500 text-white px-2 py-1 rounded-lg">${treeDetails.category}</span></h2>
-        <p id="modalDescription" class="text-sm text-gray-600">${treeDetails.description}</p>
-        <h2 class="font-bold text-2xl text-green-800">৳ <span  id="modalPrice">${treeDetails.price}</span></h2>
-    </div>
-    `;
+        `;
     treeModal.showModal();
 }
 
