@@ -9,17 +9,10 @@ const totalCartPrice = document.getElementById("total-cart-price");
 const emptyElement = document.getElementById("empty-cart-message");
 let cart = [];
 
-
-
-const showLoading = (status) => {
-    if(status){
-        loadingSpinner.classList.remove(("hidden"));
-        treeContainer.innerHTML="";
-    }else{
-        loadingSpinner.classList.add("hidden");
-    }
-}
-
+allTreeBtn.addEventListener("click", () => {
+    toggleButton(allTreeBtn);
+    loadAllTrees();
+});
 
 const loadCategories = async () => {
     // fetch('https://openapi.programming-hero.com/api/categories')
@@ -45,10 +38,12 @@ const loadCategories = async () => {
     });
 }
 
-allTreeBtn.addEventListener("click", () => {
-    toggleButton(allTreeBtn);
-    loadAllTrees();
-});
+const selectCategory = async (id) => {
+    showLoading(true);
+    const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`)
+    const data = await res.json();
+    displayTrees(data.plants);
+}
 
 const toggleButton = (btn) => {
     document.querySelectorAll("#categories-container button, #all-tree-btn").forEach(b => {
@@ -63,8 +58,14 @@ const toggleButton = (btn) => {
     btn.classList.remove("bg-transparent");
 }
 
-
-
+const showLoading = (status) => {
+    if(status){
+        loadingSpinner.classList.remove(("hidden"));
+        treeContainer.innerHTML="";
+    }else{
+        loadingSpinner.classList.add("hidden");
+    }
+}
 
 const loadAllTrees = async () => {
     showLoading(true);
@@ -72,14 +73,6 @@ const loadAllTrees = async () => {
     const data = await res.json();
     displayTrees(data.plants);
 }
-
-const selectCategory = async (id) => {
-    showLoading(true);
-    const res = await fetch(`https://openapi.programming-hero.com/api/category/${id}`)
-    const data = await res.json();
-    displayTrees(data.plants);
-}
-
 
 const displayTrees = (plants) => {    
     treeContainer.innerHTML = "";
@@ -94,7 +87,7 @@ const displayTrees = (plants) => {
             <p class="text-sm text-gray-600 line-clamp-2">${plant.description}</p>
             <div class="flex justify-between">
                 <button class="bg-green-300 text-green rounded-full px-3 py-1 text-sm">${plant.category}</button>
-                <button class="font-semibold">৳${plant.price}</button>
+                <button class="font-semibold  ${plant.price >= 800 ? "text-red-600 ":"text-green-600"}">৳${plant.price}</button>
             </div>
         <button onclick="addToCart(${plant.id}, '${plant.name}', ${plant.price})" class="btn bg-green-700 text-white py-2 rounded-full"><i class="fa-solid fa-cart-shopping"></i> Add to Cart</button>
         `;
